@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análisis de Irradiancia Solar y Mapa de Calor en Facatativá</title>
+    <link rel="stylesheet" href="style7.css">
+    
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/9.4.4/math.min.js"></script>
+   
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    
+    <script src="https://unpkg.com/leaflet.heat/dist/leaflet-heat.js"></script>
+    <style>
+        #plot {
+            height: 600px;
+        }
+        #map {
+            height: 600px;
+        }
+    </style>
+</head>
+<header>
+    <div class="logo">
+        <img src="Imagenes/label.png" alt="logo del colegio">
+    </div>
+    
+    <a href="#registro" class="cta-button">20/05/2024</a>
+  </header>
+<body>
+    <h1>Análisis de Irradiancia Solar en Facatativá, Colombia</h1>
+    <div id="plot"></div>
+    <div id="analysis"></div>
+    <h2>Mapa de Calor de Irradiancia Solar</h2>
+    <div id="map"></div>
+
+    <script>
+        
+        function irradiancia(t) {
+            return 250 * Math.sin(Math.PI * t / 12);
+        }
+
+        
+        let t = [];
+        let I = [];
+        for (let i = 0; i <= 12; i += 0.1) {
+            t.push(i);
+            I.push(irradiancia(i));
+        }
+
+        
+        let energia_total = 0;
+        let dt = 0.1; 
+        for (let i = 0; i < t.length - 1; i++) {
+            energia_total += irradiancia(t[i]) * dt;
+        }
+        
+        
+        let trace = {
+            x: t,
+            y: I,
+            mode: 'lines',
+            name: 'Irradiancia Solar'
+        };
+
+        
+        let max_line = {
+            x: [0, 12],
+            y: [250, 250],
+            mode: 'lines',
+            name: 'Irradiancia Máxima (250 W/m²)',
+            line: { dash: 'dash', color: 'red' }
+        };
+        let sunrise_line = {
+            x: [0, 0],
+            y: [0, 250],
+            mode: 'lines',
+            name: 'Amanecer (0 horas)',
+            line: { dash: 'dash', color: 'blue' }
+        };
+        let sunset_line = {
+            x: [12, 12],
+            y: [0, 250],
+            mode: 'lines',
+            name: 'Atardecer (12 horas)',
+            line: { dash: 'dash', color: 'green' }
+        };
+        let night_line = {
+            x: [0, 12],
+            y: [0, 0],
+            mode: 'lines',
+            name: 'Noche (0 W/m²)',
+            line: { dash: 'dash', color: 'yellow' }
+        };
+
+        let data = [trace, max_line, sunrise_line, sunset_line, night_line];
+
+        let layout = {
+            title: 'Irradiancia Solar en Facatativá, Colombia',
+            xaxis: { title: 'Tiempo (horas desde el amanecer)' },
+            yaxis: { title: 'Irradiancia (W/m²)' }
+        };
+
+        Plotly.newPlot('plot', data, layout);
+
+        
+        let analysisText = `
+            <h2>Análisis de la Irradiancia Solar</h2>
+            <p><strong>Dominio:</strong> 0 a 12 horas (desde el amanecer hasta el atardecer)</p>
+            <p><strong>Rango:</strong> 0 a 250 W/m²</p>
+            <p><strong>Energía total recibida durante el día:</strong> ${energia_total.toFixed(2)} Wh/m²</p>
+            <h3>Conclusiones</h3>
+            <p>La irradiancia solar en Facatativá sigue un patrón sinusoidal a lo largo del día, con un máximo de 250 W/m² al mediodía. 
+            Esto significa que la energía solar es más intensa alrededor del mediodía y disminuye hacia el amanecer y el atardecer.</p>
+            <p>El cálculo de la energía total recibida durante el día nos da aproximadamente 1909.86 Wh/m². 
+            Esta información es crucial para dimensionar sistemas solares fotovoltaicos y estimar la producción de energía diaria.</p>
+            <p>En términos prácticos, los paneles solares instalados en Facatativá pueden aprovechar esta energía para generar electricidad, 
+            reduciendo la dependencia de fuentes de energía no renovables y contribuyendo a la sostenibilidad energética de la región.</p>
+        `;
+        document.getElementById('analysis').innerHTML = analysisText;
+
+        
+        var map = L.map('map').setView([4.6586, -74.0937, 250], 13); // Coordenadas aproximadas de Facatativá
+
+        
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        
+        var heatData = [
+            [4.6586, -74.0937, 250], 
+
+        ];
+
+        
+        L.heatLayer(heatData, {radius: 30}).addTo(map);
+    </script>
+    <footer>
+        <button onclick="window.location.href='index.html'">Pagina Principal</button>
+        <p>&copy; 2024 Projecto Stem </p>
+        <p>All the rights reserved</p>
+        <p>Design by David Villalba</p>
+    </footer>
+</body>
+</html>

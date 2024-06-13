@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Irradiancia Solar en Facatativá</title>
+    <link rel="stylesheet" href="style6.css">
+    
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/9.4.4/math.min.js"></script>
+</head>
+<header>
+    <div class="logo">
+        <img src="Imagenes/label.png" alt="logo del colegio">
+    </div>
+    
+    <a href="#registro" class="cta-button">20/05/2024</a>
+  </header>
+<body>
+    <h1>Irradiancia Solar en Facatativá, Colombia</h1>
+    <div id="plot"></div>
+    <p id="energy"></p>
+    
+    <script>
+        
+        function irradiancia(t) {
+            return 250 * Math.sin(Math.PI * t / 12);
+        }
+
+        
+        let t = [];
+        let I = [];
+        for (let i = 0; i <= 12; i += 0.1) {
+            t.push(i);
+            I.push(irradiancia(i));
+        }
+
+        
+        let trace = {
+            x: t,
+            y: I,
+            mode: 'lines',
+            name: 'Irradiancia Solar'
+        };
+
+        let data = [trace];
+
+        let layout = {
+            title: 'Irradiancia Solar en Facatativá, Colombia',
+            xaxis: { title: 'Tiempo (horas desde el amanecer)' },
+            yaxis: { title: 'Irradiancia (W/m²)' }
+        };
+
+        Plotly.newPlot('plot', data, layout);
+
+        
+        let energia_total = math.integrate(irradiancia, 0, 12);
+        
+        document.getElementById("energy").innerText = `Energía total recibida durante el día: ${energia_total.toFixed(2)} Wh/m²`;
+    </script>
+    <p>Analisis Grafica</p>
+    <button onclick="window.location.href='index7.html'">Ir al analisis de la grafica</button> 
+    <footer>
+        <button onclick="window.location.href='index.html'">Pagina Principal</button>
+        <p>&copy; 2024 Projecto Stem </p>
+        <p>All the rights reserved</p>
+        <p>Design by David Villalba</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magnitudes</title>
+    <link rel="stylesheet" href="style5.css">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <!-- Incluye Math.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/9.4.4/math.min.js"></script>
+
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="Imagenes/label.png">
+        </div>
+        <div class="menu">
+            <a href="#Magnitudes">Que son</a> -
+            <a href="#Magnitudes2">Energia Reno</a> -
+            <a href="#Energia">Energia Solar</a> 
+        </div>
+        <div class="date">20/05/2024</div>
+    </header>
+    <main>
+        <section id="Magnitudes">
+            <h2>¿Que son las magnitudes?</h2>
+            <p>La magnitud es una medida asignada para cada uno de los objetos de un conjunto medible, formados por objetos matemáticos. La noción de magnitud concebida así puede abstraerse a objetos del mundo físico o propiedades físicas que son susceptibles de ser medidos.</p>
+            
+        </section>
+
+        <section id="Magnitudes2">
+            <h2>¿Cuales Son en Energia Renovable?</h2>
+            <p>La energía se puede medir y se mide en julios (J) según el Sistema Internacional de Unidades. El julio se define como el trabajo realizado por una fuerza de un newton en un desplazamiento de un metro en la dirección de la fuerza.</p>
+            
+        </section>
+
+        <h1>ENERGIA SOLAR</h1>
+
+        <section id="Energia">
+            <h2>Magnitud de la energia solar</h2>
+            <p>La magnitud que mide la radiación solar que llega a la Tierra es la irradiancia, que mide la potencia que por unidad de superficie alcanza a la Tierra. Su unidad es el W/m². Espectro de la irradiancia solar en la parte superior de la atmósfera El efecto escudo de la atmósfera terrestre sobre la radiación solar.</p>
+        </section>
+
+        <section id="Irradiancia">
+            <h2>Irradiancia Solar</h2>
+            <p>La irradiancia es la potencia de la radiación solar por unidad de área. En el sistema internacional de unidades se mide en (W/m 2). La irradiación solar es la magnitud que mide la energía por unidad de superficie de radiación solar incidente en una superficie. Es decir, la potencia recibida durante un tiempo (J/m 2 o Wh/m 2).</p>
+        </section>
+        <section id="Funcion">
+            <div class="container">
+                <h1>Información de Irradiancia</h1>
+                
+                <div class="formula">
+                    <h2>Fórmula General</h2>
+                    <p>I(t) = I<sub>max</sub> · sin(&pi;t/T)</p>
+                </div>
+                
+                <h3>Definiciones</h3>
+                <ul>
+                    <li><strong>I(t):</strong> Irradiancia en un momento (t) del día</li>
+                    <li><strong>I<sub>max</sub>:</strong> Irradiancia máxima al mediodía</li>
+                    <li><strong>T:</strong> Periodo de tiempo (12 horas, desde las 6am hasta las 6pm)</li>
+                    <li><strong>t:</strong> Tiempo en horas desde el amanecer</li>
+                </ul>
+                
+                <div class="formula">
+                    <h2>Valores Dados</h2>
+                    <p>I<sub>max</sub> = 250 W/m<sup>2</sup></p>
+                    <p>I(t) = 250 W/m<sup>2</sup> · sin(&pi;t/12)</p>
+                </div>
+                
+                <h3>Valores Calculados</h3>
+                <table>
+                    <tr>
+                        <th>Horas Pasadas</th>
+                        <th>Fórmula</th>
+                        <th>Resultado de sin</th>
+                        <th>I(t) (W/m<sup>2</sup>)</th>
+                    </tr>
+                    <tr>
+                        <td>0</td>
+                        <td>I(0) = 250 W/m<sup>2</sup> · sin(&pi;·0/12)</td>
+                        <td>sin(0) = 0</td>
+                        <td>0 W/m<sup>2</sup></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>I(2) = 250 W/m<sup>2</sup> · sin(&pi;·2/12)</td>
+                        <td>sin(&pi;/6) = 0.5</td>
+                        <td>125 W/m<sup>2</sup></td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>I(4) = 250 W/m<sup>2</sup> · sin(&pi;·4/12)</td>
+                        <td>sin(&pi;/3) = 0.866</td>
+                        <td>216.5 W/m<sup>2</sup></td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>I(6) = 250 W/m<sup>2</sup> · sin(&pi;·6/12)</td>
+                        <td>sin(&pi;/2) = 1</td>
+                        <td>250 W/m<sup>2</sup></td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>I(8) = 250 W/m<sup>2</sup> · sin(&pi;·8/12)</td>
+                        <td>sin(2&pi;/3) = 0.866</td>
+                        <td>216.5 W/m<sup>2</sup></td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>I(10) = 250 W/m<sup>2</sup> · sin(&pi;·10/12)</td>
+                        <td>sin(5&pi;/6) = 0.5</td>
+                        <td>125 W/m<sup>2</sup></td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td>I(12) = 250 W/m<sup>2</sup> · sin(&pi;·12/12)</td>
+                        <td>sin(&pi;) = 0</td>
+                        <td>0 W/m<sup>2</sup></td>
+                    </tr>
+                </table>
+            </div>
+            <details>
+                <button onclick="window.location.href='index6.html'">Grafica Irradiancia</button>
+            </details>
+        </section>
+
+
+        <footer>
+            <button onclick="window.location.href='index.html'">Pagina Principal</button>
+            <p>&copy; 2024 Projecto Stem </p>
+            <p>All the rights reserved</p>
+            <p>Design by David Villalba</p>
+        </footer>
+    </main>
+</body>
+</html>
