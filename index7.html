@@ -100,7 +100,7 @@
         let data = [trace, max_line, sunrise_line, sunset_line, night_line];
 
         let layout = {
-            title: 'Irradiancia Solar en Facatativá, Colombia',
+            title: 'Irradiancia Solar en Bogota, Colombia',
             xaxis: { title: 'Tiempo (horas desde el amanecer)' },
             yaxis: { title: 'Irradiancia (W/m²)' }
         };
@@ -124,7 +124,7 @@
         document.getElementById('analysis').innerHTML = analysisText;
 
         
-        var map = L.map('map').setView([4.6586, -74.0937, 250], 13); // Coordenadas aproximadas de Facatativá
+        var map = L.map('map').setView([4.6586, -74.0937, 250], 13); 
 
         
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
